@@ -1,0 +1,5 @@
+﻿.comma ~ .comma:not(:empty):before {
+    content:", ";    
+}
+
+

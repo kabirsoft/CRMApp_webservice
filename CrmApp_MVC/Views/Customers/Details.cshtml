@@ -1,0 +1,180 @@
+﻿@model CRMApp_datalayer.Models.Customer
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Customer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Company.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Company.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PostAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PostAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Telephone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telephone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fax)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fax)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Created)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Created)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Updated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Updated)
+        </dd>
+
+    </dl>
+
+    <!-- types -->
+    <h2> Types </h2>
+
+    <table class="table">
+        <tr>
+            <th>
+               Name
+            </th>
+            <th>
+                Created
+            </th>
+            <th>
+               Updated
+            </th>
+            
+        </tr>
+
+        @foreach (var item in Model.Customer_CustomerTypes)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerType.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerType.Created)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerType.Updated)
+                </td>
+                
+            </tr>
+        }
+
+    </table>   
+    <!-- end types -->
+    <!-- start contacts-->
+    <h2>Contacts</h2>
+    <table class="table">
+        <tr>
+            <th>
+                Last name
+            </th>
+            <th>
+                First name
+            </th>
+            <th>
+                Title
+            </th>
+            <th>
+                Telephone
+            </th>
+            <th>
+                Mobile
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Created
+            </th>
+            <th>
+                Updated
+            </th>            
+        </tr>
+
+        @foreach (var item in Model.Contacts)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Telephone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Mobile)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Created)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Updated)
+                </td>               
+            </tr>
+        }
+
+    </table>
+    <!-- end contacts -->
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

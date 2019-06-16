@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "AssignTypesToCustomer";
+}
+
+<h2>AssignTypesToCustomer</h2>
+
+
+
+@*Custome name: @Html.DropDownList("customerId", null, new { onchange = "this.form.submit();" })*@
+<form action="/customer_customertypes/AssignTypesToCustomer" method="post">
+    Custome name: @Html.DropDownList("customerId", "")
+    <ul style="list-style-type:none">
+        @foreach (var types in ViewBag.CustomerTypes)
+        {
+            <li> <input type="checkbox" name="typeids" value="@types.Id" /> @types.Name </li>
+        }
+    </ul>
+    <input type="submit" value="Assign" />
+</form>
+
