@@ -62,8 +62,7 @@ namespace CRMApp_datalayer.Controllers
             {
                 CustomerRepo.AddNewCustomer(customer);
                 return RedirectToAction("Index");
-            }
-            
+            }            
             ViewBag.CompanyId = new SelectList(db.Companies, "Id", "Name", customer.CompanyId);           
             return View(customer);
         }
@@ -165,7 +164,13 @@ namespace CRMApp_datalayer.Controllers
             var customerList = CustomerRepo.GetCustomerByType(Convert.ToInt32(TypeId));
             return View("index", customerList);
         }
-
+        [HttpPost]
+        public ActionResult GetCustoerByTxtBgn(string searchTxt)
+        {
+            var customers = CustomerRepo.GetCustoerByTxtBgn(searchTxt);
+            ViewBag.TypeId = new SelectList(db.CustomerTypes, "Id", "Name");
+            return View("Index", customers);
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

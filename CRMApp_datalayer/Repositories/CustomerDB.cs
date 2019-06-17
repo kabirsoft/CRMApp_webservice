@@ -141,5 +141,10 @@ namespace CRMApp_datalayer.Repositories
 
             return customerList.ToList();
         }
+
+        public List<Customer> GetCustoerByTxtBgn(string searchTxt)
+        {
+            return db.Customers.Where(x => x.Name.StartsWith(searchTxt)).ToList();
+        }
     }
 }

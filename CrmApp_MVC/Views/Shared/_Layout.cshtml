@@ -29,26 +29,32 @@
         </div>
     </div>
     <!-- Search -->
-     
-    <div style="float:right">
-        @using (Html.BeginForm("GetCustoerByType", "Customers", FormMethod.Post, new { @class = "form-inline search_book" }))
-        {
-            @Html.AntiForgeryToken()            
-            @Html.Editor("CustomerType", new { htmlAttributes = new { @class = "form-control", placeholder = "Get customer by type" } })
-            <button type="submit" class="btn btn-primary">Search</button>
-        }
+    <div style="margin:10px 10px;">
+        <div class="row">
+            <div class="col-md-8">
+            </div>
+            <div class="col-lg-4">
+                @using (Html.BeginForm("GetCustoerByTxtBgn", "Customers", FormMethod.Post, new { @class = "form-inline" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.Editor("searchTxt", new { htmlAttributes = new { @class = "form-control", placeholder = "Customer name begin" } })
+                    <button type="submit" class="btn btn-primary">Search</button>
+                }
+            </div>
+        </div>
     </div>
-    <!-- End search -->
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
+   
+            <!-- End search -->
+            <div class="container body-content">
+                @RenderBody()
+                <hr />
+                <footer>
+                    <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+                </footer>
+            </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+            @Scripts.Render("~/bundles/jquery")
+            @Scripts.Render("~/bundles/bootstrap")
+            @RenderSection("scripts", required: false)
 </body>
 </html>

@@ -18,5 +18,6 @@ namespace CRMApp_datalayer.IRepositories
         CustomerViewModel GetCustomerWithTypesByCustomerId(int id);
         Customer UpdateCustomerWithTypes(CustomerViewModel customer);
         List<Customer> GetCustomerByType(int TypeId);
+        List<Customer> GetCustoerByTxtBgn(string searchTxt);
     }
 }
