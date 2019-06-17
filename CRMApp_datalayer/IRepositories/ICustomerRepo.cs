@@ -17,5 +17,6 @@ namespace CRMApp_datalayer.IRepositories
         bool RemoveCustomer(int id);
         CustomerViewModel GetCustomerWithTypesByCustomerId(int id);
         Customer UpdateCustomerWithTypes(CustomerViewModel customer);
+        List<Customer> GetCustomerByType(int TypeId);
     }
 }

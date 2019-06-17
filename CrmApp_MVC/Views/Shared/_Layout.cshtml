@@ -28,6 +28,17 @@
             </div>
         </div>
     </div>
+    <!-- Search -->
+     
+    <div style="float:right">
+        @using (Html.BeginForm("GetCustoerByType", "Customers", FormMethod.Post, new { @class = "form-inline search_book" }))
+        {
+            @Html.AntiForgeryToken()            
+            @Html.Editor("CustomerType", new { htmlAttributes = new { @class = "form-control", placeholder = "Get customer by type" } })
+            <button type="submit" class="btn btn-primary">Search</button>
+        }
+    </div>
+    <!-- End search -->
     <div class="container body-content">
         @RenderBody()
         <hr />

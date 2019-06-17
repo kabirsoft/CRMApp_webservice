@@ -130,5 +130,16 @@ namespace CRMApp_datalayer.Repositories
             return CustomerVm;
         }
 
+        public List<Customer> GetCustomerByType(int TypeId)
+        {
+            var customerList =
+           from cust in db.Customers
+           join cct in db.Customer_CustomerTypes on cust.Id equals cct.CustomerId into custGroup
+           from type in custGroup
+           where type.CustomerTypeId == TypeId
+           select cust;
+
+            return customerList.ToList();
+        }
     }
 }

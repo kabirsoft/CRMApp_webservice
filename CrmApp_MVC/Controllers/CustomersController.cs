@@ -23,7 +23,8 @@ namespace CRMApp_datalayer.Controllers
 
         // GET: Customers
         public ActionResult Index()
-        {            
+        {
+            ViewBag.TypeId = new SelectList(db.CustomerTypes, "Id", "Name");
             return View(CustomerRepo.GetAllCustomer());
         }
 
@@ -129,13 +130,13 @@ namespace CRMApp_datalayer.Controllers
         //}
 
         // GET: Customers/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Customer customer = CustomerRepo.GetCustomer(id);
+            Customer customer = CustomerRepo.GetCustomer(Convert.ToInt32(id));
             if (customer == null)
             {
                 return HttpNotFound();
@@ -150,6 +151,19 @@ namespace CRMApp_datalayer.Controllers
         {           
             CustomerRepo.RemoveCustomer(id);
             return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public ActionResult GetCustomerByType(int? TypeId)
+        {
+            ViewBag.TypeId = new SelectList(db.CustomerTypes, "Id", "Name");
+            if (TypeId == null)
+            {                
+                return View("index",CustomerRepo.GetAllCustomer());
+            }
+
+            var customerList = CustomerRepo.GetCustomerByType(Convert.ToInt32(TypeId));
+            return View("index", customerList);
         }
 
         protected override void Dispose(bool disposing)

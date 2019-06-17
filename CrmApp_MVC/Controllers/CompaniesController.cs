@@ -23,6 +23,7 @@ namespace CRMApp_datalayer.Controllers
         // GET: Companies
         public ActionResult Index()
         {
+            
             return View(CompanyRepo.GetAllCompany());
         }
 
