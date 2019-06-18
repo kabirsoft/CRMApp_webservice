@@ -7,6 +7,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using CRMApp_datalayer.IRepositories;
 using CRMApp_datalayer.Models;
+using CRMApp_datalayer.ViewModels;
 
 namespace CRMApp_webservice.Controllers
 {
@@ -25,6 +26,7 @@ namespace CRMApp_webservice.Controllers
         {
             return CustomerRepo.GetAllCustomer();
         }
+
         [HttpGet]
         [Route("api/customers/{id}")]
         [ResponseType(typeof(Customer))]
@@ -53,16 +55,29 @@ namespace CRMApp_webservice.Controllers
 
         [HttpPut]
         [Route("api/customers/{id}")]
-        [ResponseType(typeof(Customer))]
-        public IHttpActionResult Put(int id, Customer customer)
+        [ResponseType(typeof(CustomerViewModel))]
+        public IHttpActionResult Put(CustomerViewModel customer)
         {
-            Customer newCustomer = CustomerRepo.UpdateCustomer(id, customer);
-            if(newCustomer == null)
+            Customer UpdatedCustomer = CustomerRepo.UpdateCustomerWithTypes(customer);
+            if (UpdatedCustomer == null)
             {
                 return NotFound();
             }
-            return Ok(newCustomer);
+            return Ok(UpdatedCustomer);
         }
+
+        //[HttpPut]
+        //[Route("api/customers/{id}")]
+        //[ResponseType(typeof(Customer))]
+        //public IHttpActionResult Put(int id, Customer customer)
+        //{
+        //    Customer newCustomer = CustomerRepo.UpdateCustomer(id, customer);
+        //    if(newCustomer == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return Ok(newCustomer);
+        //}
 
         [HttpDelete]
         [Route("api/customers/{id}")]
@@ -75,6 +90,34 @@ namespace CRMApp_webservice.Controllers
                 return NotFound();
             }
             return Ok(true);
+        }
+
+        [HttpPost]
+        [Route("api/customers/GetCustomerByType")] 
+        //http://localhost:50125/api/customers/GetCustomerByType?TypeId=2 //postman
+        [ResponseType(typeof(List<CustomerViewModel>))]
+        public IHttpActionResult GetCustomerByType(int? TypeId)
+        {
+            if (TypeId == null)
+            {
+                return Ok(this.Get());
+            }
+            var customerList = CustomerRepo.GetCustomerByType(Convert.ToInt32(TypeId));
+            return Ok(customerList);
+        }
+
+        [HttpPost]
+        [Route("api/customers/GetCustomerByTxtBgn")]
+        //http://localhost:50125/api/customers/GetCustomerByTxtBgn?searchTxt=cust3 //postman
+        [ResponseType(typeof(List<Customer>))]
+        public IHttpActionResult GetCustomerByTxtBgn(string searchTxt)
+        {
+            var customers = CustomerRepo.GetCustoerByTxtBgn(searchTxt);
+            if(customers == null)
+            {
+                return NotFound();
+            }
+            return Ok(customers);
         }
     }
 }

@@ -165,7 +165,7 @@ namespace CRMApp_datalayer.Controllers
             return View("index", customerList);
         }
         [HttpPost]
-        public ActionResult GetCustoerByTxtBgn(string searchTxt)
+        public ActionResult GetCustomerByTxtBgn(string searchTxt)
         {
             var customers = CustomerRepo.GetCustoerByTxtBgn(searchTxt);
             ViewBag.TypeId = new SelectList(db.CustomerTypes, "Id", "Name");
