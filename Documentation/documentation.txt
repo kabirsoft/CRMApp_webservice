@@ -1,0 +1,43 @@
+Application Name: CRMApp (Customer relationship management application)
+Application is about: Company, customer, contacts and types_of_customer related
+---------- Two types of implementation in this solution: ---------
+1. CRMApp_webservice: (WebApi/Webservice)
+  RESTful API that uses HTTP requests to GET, PUT, POST and DELETE data.
+
+2. LibrarySevice_FrontEnd: (MVC Framework)
+Use MVC framework to GET, PUT, POST and DELETE data.
+
+------------  Project's functionality: ------------
+1. Functionality for Customer: 
+   Get, Add, Delete, Update Customer
+   search customer by type
+   Search customer by name //ex: search text: tel. It will result all the customer name begin with "tel" 
+   Get contacts by customer Id.
+   
+2. CRUD functionality for all the entities :
+	Company, Customer, CustomerType, Contacts 
+Note: You can not delete a record, if it has some referential integrity.
+
+
+---------------------- Framework and tools ------------
+Back-end:
+  WebApi/webservice (CRMApp_webservice )
+  MVC    ( CRMApp_MVC )
+  Entity framework ( CRMApp_datalayer )
+  StructureMap ( decide what implementation of IRepositories to inject )
+  Swagger (documentation for Restful webservices. See swagger.png )
+  Routing  (matches url for HTTP request to a particular action method)  
+  Mirgration ( Entity framework tool to update Database schema )
+  
+Frontend: 
+  Razor
+  Bootstrap
+  CSS
+----------------------------------------- Solution folder structure -----------
+Solution has 3 seperate project
+1. CRMApp_datalayer (Data has been separate from other project )
+2. CRMApp_webservice ( WebApi/WebService has been used to implement functionality )
+3. CRMApp_MVC ( MVC framework has been used to implement functionality)
+
+Yet to implement: Unittest (MOQ)
+  
