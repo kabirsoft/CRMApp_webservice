@@ -22,19 +22,18 @@ namespace CRMApp_datalayer.Controllers
 
         // GET: Companies
         public ActionResult Index()
-        {
-            
+        {            
             return View(CompanyRepo.GetAllCompany());
         }
 
         // GET: Companies/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id)
         {
-            //if (id == null)
-            //{
-            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            //}
-            Company company = CompanyRepo.GetCompany(id);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Company company = CompanyRepo.GetCompany(Convert.ToInt32(id));
             if (company == null)
             {
                 return HttpNotFound();
@@ -64,13 +63,13 @@ namespace CRMApp_datalayer.Controllers
         }
 
         // GET: Companies/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Company company = CompanyRepo.GetCompany(id);
+            Company company = CompanyRepo.GetCompany(Convert.ToInt32(id));
             if (company == null)
             {
                 return HttpNotFound();
@@ -86,9 +85,7 @@ namespace CRMApp_datalayer.Controllers
         public ActionResult Edit([Bind(Include = "Id,Name,Address,PostAddress,Telephone,Email,Created")] Company company)
         {
             if (ModelState.IsValid)
-            {                
-                //db.Entry(company).State = EntityState.Modified;
-                //db.SaveChanges();
+            {  
                 CompanyRepo.UpdateCompany(company.Id,company);
                 return RedirectToAction("Index");
             }
@@ -96,13 +93,13 @@ namespace CRMApp_datalayer.Controllers
         }
 
         // GET: Companies/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Company company = CompanyRepo.GetCompany(id);
+            Company company = CompanyRepo.GetCompany(Convert.ToInt32(id));
             if (company == null)
             {
                 return HttpNotFound();

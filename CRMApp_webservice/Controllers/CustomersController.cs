@@ -64,20 +64,7 @@ namespace CRMApp_webservice.Controllers
                 return NotFound();
             }
             return Ok(UpdatedCustomer);
-        }
-
-        //[HttpPut]
-        //[Route("api/customers/{id}")]
-        //[ResponseType(typeof(Customer))]
-        //public IHttpActionResult Put(int id, Customer customer)
-        //{
-        //    Customer newCustomer = CustomerRepo.UpdateCustomer(id, customer);
-        //    if(newCustomer == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    return Ok(newCustomer);
-        //}
+        }      
 
         [HttpDelete]
         [Route("api/customers/{id}")]

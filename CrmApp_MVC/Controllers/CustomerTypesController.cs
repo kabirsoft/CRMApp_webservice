@@ -27,13 +27,13 @@ namespace CRMApp_datalayer.Controllers
         }
 
         // GET: CustomerTypes/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CustomerType customerType = CustomerTypeRepo.GetCustomerType(id);
+            CustomerType customerType = CustomerTypeRepo.GetCustomerType(Convert.ToInt32(id));
             if (customerType == null)
             {
                 return HttpNotFound();
@@ -64,13 +64,13 @@ namespace CRMApp_datalayer.Controllers
         }
 
         // GET: CustomerTypes/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CustomerType customerType = CustomerTypeRepo.GetCustomerType(id);
+            CustomerType customerType = CustomerTypeRepo.GetCustomerType(Convert.ToInt32(id));
             if (customerType == null)
             {
                 return HttpNotFound();
@@ -94,13 +94,13 @@ namespace CRMApp_datalayer.Controllers
         }
 
         // GET: CustomerTypes/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CustomerType customerType = CustomerTypeRepo.GetCustomerType(id);
+            CustomerType customerType = CustomerTypeRepo.GetCustomerType(Convert.ToInt32(id));
             if (customerType == null)
             {
                 return HttpNotFound();

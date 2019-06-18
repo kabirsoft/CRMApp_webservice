@@ -31,13 +31,13 @@ namespace CRMApp_datalayer.Controllers
         }
 
         // GET: Contacts/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Contact contact = ContactRepo.GetContact(id);
+            Contact contact = ContactRepo.GetContact(Convert.ToInt32(id));
             if (contact == null)
             {
                 return HttpNotFound();
@@ -70,13 +70,13 @@ namespace CRMApp_datalayer.Controllers
         }
 
         // GET: Contacts/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Contact contact = ContactRepo.GetContact(id);
+            Contact contact = ContactRepo.GetContact(Convert.ToInt32(id));
             if (contact == null)
             {
                 return HttpNotFound();
@@ -102,13 +102,13 @@ namespace CRMApp_datalayer.Controllers
         }
 
         // GET: Contacts/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Contact contact = ContactRepo.GetContact(id);
+            Contact contact = ContactRepo.GetContact(Convert.ToInt32(id));
             if (contact == null)
             {
                 return HttpNotFound();

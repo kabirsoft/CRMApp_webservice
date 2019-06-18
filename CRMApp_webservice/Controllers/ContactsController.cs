@@ -76,5 +76,18 @@ namespace CRMApp_webservice.Controllers
             return Ok(true);
         }
 
+        [HttpGet]
+        [Route("api/contacts/customer/{id}")]
+        [ResponseType(typeof(List<Contact>))]
+        public IHttpActionResult ContactsByCustomerId(int id)
+        {
+            List<Contact> contacts = ContactRepo.ContactsByCustomerId(id);
+            if(contacts == null)
+            {
+                return NotFound();
+            }
+            return Ok(contacts);
+        }
+
     }
 }
