@@ -18,6 +18,8 @@ Use MVC framework to GET, PUT, POST and DELETE data.
 	Company, Customer, CustomerType, Contacts 
 Note: You can not delete a record, if it has some referential integrity.
 
+3. Report: Customer info
+
 
 ---------------------- Framework and tools ------------
 Back-end:
