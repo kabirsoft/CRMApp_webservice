@@ -27,18 +27,33 @@ namespace CRMApp_webservice.Controllers
             return CustomerRepo.GetAllCustomer();
         }
 
+
+        [HttpGet]
+        [Route("api/customerWithTypes/{id}")]
+        [ResponseType(typeof(CustomerViewModel))]
+        public IHttpActionResult GetCustomerWithTypesByCustomerId(int? id)
+        {
+            var customer = CustomerRepo.GetCustomerWithTypesByCustomerId(Convert.ToInt32(id));
+            if (customer == null)
+            {
+                return NotFound();
+            }
+            return Ok(customer);
+        }
+
         [HttpGet]
         [Route("api/customers/{id}")]
         [ResponseType(typeof(Customer))]
         public IHttpActionResult Get(int id)
         {
             Customer customer = CustomerRepo.GetCustomer(id);
-            if( customer == null)
+            if (customer == null)
             {
                 return NotFound();
             }
             return Ok(customer);
         }
+
 
         [HttpPost]
         [Route("api/customers")]
@@ -79,10 +94,12 @@ namespace CRMApp_webservice.Controllers
             return Ok(true);
         }
 
+     
+
         [HttpPost]
         [Route("api/customers/GetCustomerByType")] 
         //http://localhost:50125/api/customers/GetCustomerByType?TypeId=2 //postman
-        [ResponseType(typeof(List<CustomerViewModel>))]
+        [ResponseType(typeof(List<Customer>))]
         public IHttpActionResult GetCustomerByType(int? TypeId)
         {
             if (TypeId == null)
