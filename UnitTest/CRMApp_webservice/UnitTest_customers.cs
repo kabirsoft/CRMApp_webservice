@@ -56,6 +56,25 @@ namespace UnitTest.CRMApp_webservice
             Assert.AreEqual(resultCustomer.Content.Name, "Cust1");
         }
 
+
+        [TestMethod]
+        public void TestGetCustomerWithTypesByCustomerId()
+        {
+            //arrange
+            var CustomerRepoMockClass = new Mock<ICustomerRepo>();
+            var getCustomerObj = new CustomerViewModel { Id = 1, Name = "Cust1", Address = "Oslo", PostAddress = "1024", Telephone = "123341", Fax = "134451", CompanyId = 1, Updated = DateTime.Now, TypeVmList = null };
+            CustomerRepoMockClass.Setup(x => x.GetCustomerWithTypesByCustomerId(1)).Returns(getCustomerObj);
+            var customerController = new CustomersController(CustomerRepoMockClass.Object);
+
+            //act
+            IHttpActionResult result = customerController.GetCustomerWithTypesByCustomerId(1);
+            var resultCustomer = result as OkNegotiatedContentResult<CustomerViewModel>;
+
+            //assert
+            Assert.AreEqual(resultCustomer.Content.Id, 1);
+            Assert.AreEqual(resultCustomer.Content.Name, "Cust1");
+        }
+
         [TestMethod]
         public void TestCustomersPost()
         {
@@ -112,6 +131,50 @@ namespace UnitTest.CRMApp_webservice
             //assert
             Assert.AreEqual(resultCustomer.Content, true);
 
+        }    
+
+        [TestMethod]
+        public void TestGetCustomerByType()
+        {
+            //arrange
+            var CustomerRepoMockClass = new Mock<ICustomerRepo>();
+            List<Customer> getCustomerObj = new List<Customer>()
+            {
+                new Customer{Id=1, Name="Cust1", Address="Oslo", PostAddress="1024", Telephone="123341", Fax="134451", CompanyId=1,  Updated=DateTime.Now},
+                new Customer{Id=2, Name="Cust2", Address="Bergen", PostAddress="2024", Telephone="223342", Fax="234452", CompanyId=2, Updated=DateTime.Now}
+            };
+            CustomerRepoMockClass.Setup(x => x.GetCustomerByType(1)).Returns(getCustomerObj);
+            var customerController = new CustomersController(CustomerRepoMockClass.Object);
+
+            //Act
+            IHttpActionResult result = customerController.GetCustomerByType(1);
+            var resultCustomer = result as OkNegotiatedContentResult<List<Customer>>;
+
+            //assert
+            Assert.AreEqual(resultCustomer.Content[0].Id, 1);
+            Assert.AreEqual(resultCustomer.Content[1].Name, "Cust2");
+        }
+
+        [TestMethod]
+        public void TestGetCustomerByTxtBgn()
+        {
+            //arrange
+            var CustomerRepoMockClass = new Mock<ICustomerRepo>();
+            List<Customer> getCustomerObj = new List<Customer>()
+            {
+                new Customer{Id=1, Name="Cust1", Address="Oslo", PostAddress="1024", Telephone="123341", Fax="134451", CompanyId=1,  Updated=DateTime.Now},
+                new Customer{Id=2, Name="Cust2", Address="Bergen", PostAddress="2024", Telephone="223342", Fax="234452", CompanyId=2, Updated=DateTime.Now}
+            };
+            CustomerRepoMockClass.Setup(x => x.GetCustoerByTxtBgn("cus")).Returns(getCustomerObj);
+            var customerController = new CustomersController(CustomerRepoMockClass.Object);
+
+            //Act
+            IHttpActionResult result = customerController.GetCustomerByTxtBgn("cus");
+            var resultCustomer = result as OkNegotiatedContentResult<List<Customer>>;
+
+            //assert
+            Assert.AreEqual(resultCustomer.Content[0].Id, 1);
+            Assert.AreEqual(resultCustomer.Content[1].Name, "Cust2");
         }
 
     }

@@ -41,23 +41,23 @@ namespace CRMApp_datalayer.Repositories
             return true;
         }
 
-        public Customer UpdateCustomer(int id, Customer customer)
-        {
-            Customer uCustomer = GetCustomer(id);
-            if (uCustomer != null)
-            {
-                uCustomer.Name = customer.Name;
-                uCustomer.Address = customer.Address;
-                uCustomer.PostAddress = customer.PostAddress;
-                uCustomer.Telephone = customer.Telephone;
-                uCustomer.Fax = customer.Fax;
-                uCustomer.CompanyId = customer.CompanyId;
-                uCustomer.Updated = DateTime.Now;
-                db.SaveChanges();
-            }
+        //public Customer UpdateCustomer(int id, Customer customer)
+        //{
+        //    Customer uCustomer = GetCustomer(id);
+        //    if (uCustomer != null)
+        //    {
+        //        uCustomer.Name = customer.Name;
+        //        uCustomer.Address = customer.Address;
+        //        uCustomer.PostAddress = customer.PostAddress;
+        //        uCustomer.Telephone = customer.Telephone;
+        //        uCustomer.Fax = customer.Fax;
+        //        uCustomer.CompanyId = customer.CompanyId;
+        //        uCustomer.Updated = DateTime.Now;
+        //        db.SaveChanges();
+        //    }
 
-            return uCustomer;
-        }
+        //    return uCustomer;
+        //}
 
         public Customer UpdateCustomerWithTypes(CustomerViewModel customer)
         {

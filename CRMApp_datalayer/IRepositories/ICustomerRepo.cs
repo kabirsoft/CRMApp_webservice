@@ -13,7 +13,7 @@ namespace CRMApp_datalayer.IRepositories
         List<Customer> GetAllCustomer();
         Customer GetCustomer(int id);
         Customer AddNewCustomer(Customer customer);
-        Customer UpdateCustomer(int id, Customer customer);
+        //Customer UpdateCustomer(int id, Customer customer);
         bool RemoveCustomer(int id);
         CustomerViewModel GetCustomerWithTypesByCustomerId(int id);
         Customer UpdateCustomerWithTypes(CustomerViewModel customer);

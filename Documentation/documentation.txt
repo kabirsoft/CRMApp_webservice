@@ -36,10 +36,16 @@ Frontend:
   Bootstrap
   CSS
 ----------------------------------------- Solution folder structure -----------
-Solution has 3 seperate project
+Solution has 4 seperate project
 1. CRMApp_datalayer (Data has been separate from other project )
 2. CRMApp_webservice ( WebApi/WebService has been used to implement functionality )
 3. CRMApp_MVC ( MVC framework has been used to implement functionality)
+4. UnitTest_CRMApp_webservice ( MOQ Unit testing for CRMApp_webservice controllers )
 
-Yet to implement: Unittest (MOQ)
+--------------------------- Unittest (MOQ) ---------------
+UnitTest_CRMApp_webservice( CRMApp_webservice project's controller )        	  
+		UnitTest_companies.cs
+		UnitTest_contacts.cs
+		UnitTest_customers.cs
+		UnitTest_customerTypes.cs
   
