@@ -4,7 +4,7 @@ Application is about: Company, customer, contacts and types_of_customer related
 1. CRMApp_webservice: (WebApi/Webservice)
   RESTful API that uses HTTP requests to GET, PUT, POST and DELETE data.
 
-2. LibrarySevice_FrontEnd: (MVC Framework)
+2. CrmApp_MVC: (MVC Framework)
 Use MVC framework to GET, PUT, POST and DELETE data.
 
 ------------  Project's functionality: ------------
